@@ -58,6 +58,13 @@ table {
             }
         }
     }
+    tr{
+        font-weight: bold;
+        &:nth-child(odd){
+            background-color: gray;
+            color: #fff;        
+        }    
+    }
 }
 
 .btn {
@@ -79,4 +86,11 @@ table {
         cursor: pointer;
         transform: scale(1.1);
     }
+}
+.button>input{
+    height: 3vh;
+    width: 60%;
+    background-color: red;
+    color: white;
+    @include Material-input;
 }

@@ -13,6 +13,7 @@ import { BddService, IArticleFilterOrder } from '../service/bdd.service';
 export class ListeComponent implements OnInit {
   articles: IArticle[] = [];
   tags: ITag[]= [];
+  articleTags: ITag[] = []
   categories: ICategorie[] = [];
   filter: IArticleFilterOrder = {
     type: "",
@@ -30,22 +31,25 @@ export class ListeComponent implements OnInit {
       }
       else {
         this.bddService.getAllArticle().subscribe((datas: IArticle[]) => {
-          let i: number = 0;
-          for (let data of datas) {            
-            if (i < 1) {
-              this.articles[i] = data;
-            }
-            else{
-              if(data.id_article == this.articles[i-1].id_article){
-                this.articles[i-1].nom_tag = this.articles[i-1].nom_tag +","+ data.nom_tag;
+          for(let data of datas){
+            let id = data.id_article
+            this.bddService.getTagsArticle(id).subscribe((tags:ITag[]) => {
+              let tagarticle: string[] = [];
+              for (let tag of tags){                
+                tagarticle.push(tag.nom_tag)                
               }
-              else{
-                this.articles[i] = data;
-              }
-            }
-            i++;
+                this.articles.push({
+                  id_article: data.id_article,
+                  contenu_article: data.contenu_article,
+                  date_creation_article: data.date_creation_article,
+                  date_publication_article: data.date_publication_article,
+                  titre_article: data.titre_article,
+                  statut_article: data.statut_article,
+                  nom_categorie: data.nom_categorie,
+                  nom_tag: tagarticle
+                })              
+            }) 
           }
-          console.log(this.articles)
         })
         this.bddService.getAllTags().subscribe((datas: ITag[])=>{
           this.tags = datas

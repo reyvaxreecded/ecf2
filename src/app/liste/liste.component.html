@@ -16,14 +16,16 @@
         <th>Satut</th>
         <th>Catégorie</th>
         <th>Tags</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tr *ngFor="let data of articles">
-      <td ><a (click)="onViewArticle(data.id_article)">{{data.titre_article}}</a></td>
+      <td>{{data.titre_article}}</td>
       <td>{{data.date_publication_article}}</td>
       <td>{{data.statut_article}}</td>
       <td>{{data.nom_categorie}}</td>
       <td>{{data.nom_tag}}</td>
+      <td class="button"><input type="button" value="Modifier" routerLink="/modify/{{data.id_article}}"><input type="button" value="Voir" (click)="onViewArticle(data.id_article)"></td>
     </tr>
   </table>
   <div class="filter">
