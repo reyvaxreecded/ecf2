@@ -57,3 +57,14 @@ form{
         }
     }
 }
+.currentTag{
+    list-style: none;
+    padding: 0;
+    li{
+        width: 150px;
+        @include Flex(space-between, center);
+        input{
+            width: 20px !important;
+        }
+    }
+}

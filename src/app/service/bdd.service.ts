@@ -5,6 +5,7 @@ import { IArticle } from '../model/article.model';
 import { ITag } from '../model/tags.model';
 import { ICategorie } from '../model/categorie.model';
 import { INew } from '../model/new.model';
+import { IUpdate } from '../model/update.model';
 
 export interface IArticleFilterOrder {
   type: string,
@@ -49,6 +50,34 @@ export class BddService {
       (response) => {
         if(response){
           alert('article créer')
+        }
+        else {
+          alert('error')
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+  updateArticle(article: IUpdate){
+    let newArticle = JSON.stringify(article);
+    this.httpClient.post(`${this.BASE_URL}/update.php`, newArticle).subscribe(
+      (response) => {
+        if(response){
+          alert('article modifié')
+        }
+        else {
+          alert('error')
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+  deleteArticle(id: number){
+    let id_article = JSON.stringify(id); 
+    this.httpClient.post(`${this.BASE_URL}/delete.php`, id).subscribe(
+      (response) => {
+        if(response){
+          alert('article suprimmé')
         }
         else {
           alert('error')

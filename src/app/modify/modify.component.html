@@ -1,25 +1,30 @@
-<h1 class="head">Modifier</h1>
+<h1 class="head">Modifier un article</h1>
 <div class="text--underbar"></div>
-<div class="form">
-    <form action="create.php">
+<div *ngIf="article != null" class="form">
+    <form [formGroup]="createForm">
         <div class="left">
-            <input name="titre" type="text" placeholder="Titre">
-            <textarea name="contenue" placeholder="Contenue" cols="30" rows="10"></textarea>
+            <input formControlName="titre" type="text" placeholder="{{article.titre_article}}">
+            <textarea formControlName="contenue" placeholder="{{article.contenu_article}}" cols="30" rows="10"></textarea>
         </div>
         <div class="right">
             <div class="button">
                <ul>
+                   <input (click)="publish()" type="button" value="Publier">
                    <input (click)="save()" type="button" value="Sauvegarder">
+                   <input (click)="delete(article.id_article)" type="button" value="Supprimer">
                </ul>
             </div>
             <div class="select">
-                <select name="categorie">
-                    <option value="">Catégorie</option>
+                <select formControlName="categorie">                    
+                    <option *ngFor="let cat of categories" value="{{cat.id_categorie}}">{{cat.nom_categorie}}</option>
                 </select>
-                <select name="tags">
-                    <option value="">Tag</option>                    
+                <select formControlName="tag">                    
+                    <option *ngFor="let tag of tags" value="{{tag.id_tag}}">{{tag.nom_tag}}</option>                    
                 </select>
-                <input (click)="save()" type="button" value="Ajouter">
+                <ul class="currentTag">
+                    <li *ngFor="let tag of currentTags; let i=index">{{tag}}<input type="button" value="X" (click)="deleteTag(i)"></li>
+                </ul>
+                <input (click)="addTag()" type="button" value="Ajouter">
             </div>
         </div>    
     </form>

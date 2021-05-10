@@ -14,16 +14,14 @@
                </ul>
             </div>
             <div class="select">
-                <select formControlName="categorie">
-                    <option value="">Catégorie</option>
+                <select formControlName="categorie">                    
                     <option *ngFor="let cat of categories" value="{{cat.id_categorie}}">{{cat.nom_categorie}}</option>
                 </select>
-                <select formControlName="tag">
-                    <option value="">Tag</option>
+                <select formControlName="tag">                    
                     <option *ngFor="let tag of tags" value="{{tag.id_tag}}">{{tag.nom_tag}}</option>                    
                 </select>
-                <ul>
-                    <li *ngFor="let tag of addTags">{{tag}}</li>
+                <ul class="currentTag">
+                    <li *ngFor="let tag of currentTags; let i=index">{{tag}}<input type="button" value="X" (click)="deleteTag(i)"></li>
                 </ul>
                 <input (click)="addTag()" type="button" value="Ajouter">
             </div>

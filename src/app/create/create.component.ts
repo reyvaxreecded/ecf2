@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICategorie } from '../model/categorie.model';
 import { INew } from '../model/new.model';
 import { ITag } from '../model/tags.model';
@@ -19,8 +20,9 @@ export class CreateComponent implements OnInit {
   tags: ITag[] = [];
   createForm!: FormGroup;
   addTags: string[] = [];
+  currentTags: string[] = [];
 
-  constructor(private bddService: BddService) { }
+  constructor(private bddService: BddService, private router: Router) { }
 
   ngOnInit(): void {
     this.bddService.getAllTags().subscribe((datas: ITag[])=>{
@@ -40,9 +42,20 @@ export class CreateComponent implements OnInit {
     })
   }
   addTag(){
+    const tagid = this.createForm.get('tag')?.value;
+    this.addTags.push(tagid);
+    for(let tag of this.tags){
+      if(tagid == tag.id_tag){
+        this.currentTags.push(tag.nom_tag);
+      }
+    }
+    console.log(this.addTags)
+  }
+  deleteTag(id: number){
     const tag = this.createForm.get('tag')?.value;
-    this.addTags.push(tag); 
-    console.log(this.addTags);
+    this.currentTags.splice(id, 1);  
+    this.addTags.splice(id, 1);
+    console.log(this.addTags)
   }
   create(){
     const titre = this.createForm.get('titre')?.value;
@@ -58,6 +71,7 @@ export class CreateComponent implements OnInit {
       tags: this.addTags
     }
     this.bddService.createArticle(newArticle);
+    this.router.navigate(["/"]);
   }
   save(){
     const titre = this.createForm.get('titre')?.value;
@@ -73,5 +87,6 @@ export class CreateComponent implements OnInit {
       tags: this.addTags
     }
     this.bddService.createArticle(newArticle);
+    this.router.navigate(["/"]);
   }
 }
