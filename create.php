@@ -19,8 +19,8 @@ if (isset($postdata) && !empty($postdata)) {
             "titre"=> $titre_article,
             "contenu"=> $contenue_article,
             "statut"=> $statut_article,
-            "date_creation" => $date_creation,
-            "date_publication" => $date_publication,
+            "date_creation" => date('Y-M-D'),
+            "date_publication" => date('Y-M-D'),
             "id_categorie" => $id_categorie
         ]);
 
