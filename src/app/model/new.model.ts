@@ -5,5 +5,5 @@ export interface INew {
     contenue_article: string,
     statut_article: string,
     id_categorie: number,
-    tags: addTag[]
+    tags: string[]
 }

@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   categories: ICategorie[] = [];
   tags: ITag[] = [];
   createForm!: FormGroup;
-  addTags: addTag[]= [];
+  addTags: string[] = [];
 
   constructor(private bddService: BddService) { }
 
@@ -41,7 +41,7 @@ export class CreateComponent implements OnInit {
   }
   addTag(){
     const tag = this.createForm.get('tag')?.value;
-    this.addTags.push({id_tag: tag}); 
+    this.addTags.push(tag); 
     console.log(this.addTags);
   }
   create(){

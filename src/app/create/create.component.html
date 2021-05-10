@@ -23,7 +23,7 @@
                     <option *ngFor="let tag of tags" value="{{tag.id_tag}}">{{tag.nom_tag}}</option>                    
                 </select>
                 <ul>
-                    <li *ngFor="let tag of addTags">{{tag.id_tag}}</li>
+                    <li *ngFor="let tag of addTags">{{tag}}</li>
                 </ul>
                 <input (click)="addTag()" type="button" value="Ajouter">
             </div>
