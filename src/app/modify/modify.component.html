@@ -1,0 +1,26 @@
+<h1 class="head">Modifier</h1>
+<div class="text--underbar"></div>
+<div class="form">
+    <form action="create.php">
+        <div class="left">
+            <input name="titre" type="text" placeholder="Titre">
+            <textarea name="contenue" placeholder="Contenue" cols="30" rows="10"></textarea>
+        </div>
+        <div class="right">
+            <div class="button">
+               <ul>
+                   <input (click)="save()" type="button" value="Sauvegarder">
+               </ul>
+            </div>
+            <div class="select">
+                <select name="categorie">
+                    <option value="">Catégorie</option>
+                </select>
+                <select name="tags">
+                    <option value="">Tag</option>                    
+                </select>
+                <input (click)="save()" type="button" value="Ajouter">
+            </div>
+        </div>    
+    </form>
+</div>

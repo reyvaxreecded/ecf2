@@ -1,0 +1,33 @@
+<h1 class="head">Ajouter un article</h1>
+<div class="text--underbar"></div>
+<div class="form">
+    <form [formGroup]="createForm">
+        <div class="left">
+            <input formControlName="titre" type="text" placeholder="Titre">
+            <textarea formControlName="contenue" placeholder="Contenue" cols="30" rows="10"></textarea>
+        </div>
+        <div class="right">
+            <div class="button">
+               <ul>
+                   <input (click)="create()" type="button" value="Publier">
+                   <input (click)="save()" type="button" value="Sauvegarder">
+               </ul>
+            </div>
+            <div class="select">
+                <select formControlName="categorie">
+                    <option value="">Catégorie</option>
+                    <option *ngFor="let cat of categories" value="{{cat.id_categorie}}">{{cat.nom_categorie}}</option>
+                </select>
+                <select formControlName="tag">
+                    <option value="">Tag</option>
+                    <option *ngFor="let tag of tags" value="{{tag.id_tag}}">{{tag.nom_tag}}</option>                    
+                </select>
+                <ul>
+                    <li *ngFor="let tag of addTags">{{tag.id_tag}}</li>
+                </ul>
+                <input (click)="addTag()" type="button" value="Ajouter">
+            </div>
+        </div>    
+    </form>
+</div>
+

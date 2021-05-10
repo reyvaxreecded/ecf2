@@ -1,0 +1,59 @@
+@import '../../assets/utils/mixin';
+form{
+    @include Flex(space-between, center);
+    margin-top: 20px;
+    height: 60vh;
+    width: 25vw;
+    .left{
+        @include Flex(space-between,normal, column);
+        input,textarea{
+            @include Material-input;
+        }
+        textarea{
+            margin-top: 5vh;
+            height: 40vh;
+        }
+        
+    }
+    .right{
+        height: 50vh;
+        @include Flex(space-around,center, column);
+        .button{
+            height: 10vh;
+            width: 10vw;
+            border: 1px solid black;
+            @include Flex(center,center);
+            ul{
+                height: 100%;
+                width: 100%;
+                list-style: none;
+                padding: 0;
+                @include Flex(space-around,center, column);
+            }
+            input{
+                height: 3vh;
+                width: 60%;
+                background-color: red;
+                color: white;
+                @include Material-input;
+            }
+        }
+        .select{
+            height: 35vh;
+            width: 10vw;
+            border: 1px solid black;
+            @include Flex(space-evenly,center, column);
+            select{
+                width: 80%;
+                @include Material-input;           
+            }
+            input{
+                height: 3vh;
+                width: 60%;
+                background-color: red;
+                color: white;
+                @include Material-input;  
+            }
+        }
+    }
+}

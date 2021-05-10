@@ -1,0 +1,56 @@
+<div class="top">
+  <div class="title">
+    <h1 class="head">Liste des articles</h1>
+    <div class="text--underbar"></div>
+  </div>
+  <div  routerLink="/create" class="btn">
+    <a>Ajouter</a>
+  </div>
+</div>
+<div class="mid">
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Date</th>
+        <th>Satut</th>
+        <th>Catégorie</th>
+        <th>Tags</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let data of articles">
+      <td ><a (click)="onViewArticle(data.id_article)">{{data.titre_article}}</a></td>
+      <td>{{data.date_publication_article}}</td>
+      <td>{{data.statut_article}}</td>
+      <td>{{data.nom_categorie}}</td>
+      <td>{{data.nom_tag}}</td>
+    </tr>
+  </table>
+  <div class="filter">
+    <h1>Filtre</h1>
+    <div class="checkbox">
+      <div class="brouillon">
+        <input type="checkbox" name="Brouillon" value="Brouillon" id="brouillon">
+        <label for="brouillon">Brouillon</label>
+      </div>
+      <div class="publier">
+        <input type="checkbox" name="Publié" value="Publié" id="publie">
+        <label for="publie">Publié</label>
+      </div>
+      <div class="corbeille">
+        <input type="checkbox" name="Corbeille" value="Corbeille" id="corbeille">
+        <label for="corbeille">Corbeille</label>
+      </div>
+    </div>
+    <div class="select">
+      <select name="categorie" id="categorie">
+        <option value="">Filtrer par categorie</option>
+        <option *ngFor="let cat of categories" value="{{cat.nom_categorie}}">{{cat.nom_categorie}}</option>
+      </select>
+      <select name="tag" id="tag">
+        <option value="">Filtrer par tag</option>
+        <option *ngFor="let tag of tags" value="{{tag.nom_tag}}" >{{tag.nom_tag}}</option>
+      </select>
+    </div>
+  </div>
+</div>

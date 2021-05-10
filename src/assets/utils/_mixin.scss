@@ -1,0 +1,39 @@
+@import './_animation';
+@import "./variable";
+@mixin Head($size, $color) {
+    font-family: "NATS";
+    color: $color;
+    text-shadow: 0px 20.3333px 20.3333px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-size: $size;
+    z-index: 10;
+};
+@mixin Underbar($width, $height, $color) {
+    width: $width;
+    height: $height;
+    background-color: $color;
+    margin-top: -30px;
+    animation-name: show_Underbar;
+    animation-fill-mode: backwards;
+    animation-duration: .8s;
+    z-index: 10;
+    margin-left: auto; margin-right: auto
+};
+@mixin Hexagon($width, $height, $color, $path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)) {
+    width: $width;
+    height: $height;
+    background-color: $color;
+    clip-path: $path;
+};
+@mixin Flex($justify: normal, $align: normal, $direction: row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction    
+};
+@mixin Material-input{
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid $secondary-color;
+    border-right: none;
+};

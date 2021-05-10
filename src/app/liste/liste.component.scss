@@ -1,0 +1,82 @@
+@import "../../assets/utils/mixin";
+.top {
+    width: 100vw;
+    height: 15vh;
+    @include Flex(center, center);
+}
+.mid {
+    width: 90vw;
+    height: 70vh;
+    margin: auto;
+    @include Flex(center, flex-start);
+    .filter {
+        height: 30vh;
+        border: 1px solid black;
+        padding: 20px;
+        margin-left: 20px;
+        @include Flex(normal, center, column);
+        .checkbox,
+        .select {
+            height: 10vh;
+            width: 10vw;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+        .checkbox {
+            @include Flex(space-around, normal, column);
+        }
+        .select {
+            @include Flex(space-around, center, column);
+        }
+    }
+}
+table {
+    text-align: center;
+    width: 70vw;
+    thead {
+        th {
+            &:nth-child(1) {
+                width: 20%;
+            }
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4) {
+                width: 10%;
+            }
+            &:nth-child(5) {
+                width: 20%;
+            }
+        }
+        tr {
+            height: 3vh;
+            &:nth-child(1) {
+                height: 5vh;
+            }
+            &:nth-child(odd) {
+                background-color: #333;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.btn {
+    @include Flex(center, center);
+    width: 5vw;
+    height: 5vh;
+    background-color: red;
+    margin-left: 10%;margin-top: 1%;
+    animation: 1s linear show;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+    a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}

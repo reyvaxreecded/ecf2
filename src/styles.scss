@@ -1,0 +1,8 @@
+@import './assets/utils/mixin';
+.head{
+    @include Head(28px, $secondary-color);
+}
+.text--underbar{
+    @include Underbar(20vw, 0.2vh, $secondary-color);
+    margin-top: -10px;
+}
