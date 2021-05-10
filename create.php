@@ -10,6 +10,8 @@ if (isset($postdata) && !empty($postdata)) {
     $statut_article = $data['statut_article'];
     $id_categorie = $data['id_categorie'];
     $tag = $data['tags'];
+    $date_crea = date('Y-m-d');
+    $date_publi = date('Y-m-d');
 
     try {
         $bdd->beginTransaction();
@@ -19,8 +21,8 @@ if (isset($postdata) && !empty($postdata)) {
             "titre" => $titre_article,
             "contenu" => $contenue_article,
             "statut" => $statut_article,
-            "date_creation" => date('Y-M-D'),
-            "date_publication" => date('Y-M-D'),
+            "date_creation" => $date_crea,
+            "date_publication" => $date_publi,
             "id_categorie" => $id_categorie
         ]);
 
@@ -37,7 +39,7 @@ if (isset($postdata) && !empty($postdata)) {
         $bdd->commit();
 
         echo json_encode([
-            "success" => true,
+            $bdd,
             "msg" => "Article ajouter avec succés"
         ]);
     } catch (Exception $e) {

@@ -45,6 +45,7 @@ export class ListeComponent implements OnInit {
             }
             i++;
           }
+          console.log(this.articles)
         })
         this.bddService.getAllTags().subscribe((datas: ITag[])=>{
           this.tags = datas
