@@ -16,7 +16,7 @@ import { BddService } from '../service/bdd.service';
 export class ModifyComponent implements OnInit {
   article!: IArticle
   tags: ITag[] = []
-  categories: ICategorie[] = [];  
+  categories: ICategorie[] = [];
   addTags: string[] = [];
   currentTags: string[] = [];
   createForm!: FormGroup;
@@ -26,43 +26,43 @@ export class ModifyComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const _id = params.get('id');
       const idN = parseInt(_id as string, 10);
-      if(idN){
+      if (idN) {
         this.singleArticle(idN);
       }
-      this.bddService.getAllTags().subscribe((datas: ITag[])=>{
+      this.bddService.getAllTags().subscribe((datas: ITag[]) => {
         this.tags = datas
       })
-      this.bddService.getAllCategorie().subscribe((datas: ICategorie[])=>{
+      this.bddService.getAllCategorie().subscribe((datas: ICategorie[]) => {
         this.categories = datas
       })
-      this.initForm()      
-    });     
+      this.initForm()
+    });
   }
-  initForm(){
+  initForm() {
     this.createForm = new FormGroup({
       titre: new FormControl(),
       contenue: new FormControl(),
       categorie: new FormControl(),
       tag: new FormControl()
-    })    
+    })
   }
   singleArticle(id: number) {
     this.bddService.getSingleArticle(id).subscribe((data: IArticle) => {
-      this.article = data;      
+      this.article = data;
     });
-    this.bddService.getTagsArticle(id).subscribe((datas:ITag[]) => {
-      for(let info of datas){
+    this.bddService.getTagsArticle(id).subscribe((datas: ITag[]) => {
+      for (let info of datas) {
         this.addTags.push(String(info.id_tag));
         this.currentTags.push(info.nom_tag);
       }
-    })  
+    })
   }
-  save(){
+  save() {
     const titre = this.createForm.get('titre')?.value;
     const contenue = this.createForm.get('contenue')?.value;
     const statut = 'Brouillon'
     const id_categorie = this.createForm.get('categorie')?.value;
-    if(titre != null && contenue != null && id_categorie != null){
+    if (titre != null && contenue != null && id_categorie != null) {
       let newArticle: IUpdate = {
         id_article: this.article.id_article,
         titre_article: titre,
@@ -74,16 +74,16 @@ export class ModifyComponent implements OnInit {
       this.bddService.updateArticle(newArticle);
       this.router.navigate(["/"]);
     }
-    else{
+    else {
       alert('veuillez remplir tout les champs')
     }
   }
-  publish(){
+  publish() {
     const titre = this.createForm.get('titre')?.value;
     const contenue = this.createForm.get('contenue')?.value;
     const statut = 'Publié'
     const id_categorie = this.createForm.get('categorie')?.value;
-    if(titre != null && contenue != null && id_categorie != null){
+    if (titre != null && contenue != null && id_categorie != null) {
       let newArticle: IUpdate = {
         id_article: this.article.id_article,
         titre_article: titre,
@@ -95,26 +95,30 @@ export class ModifyComponent implements OnInit {
       this.bddService.updateArticle(newArticle);
       this.router.navigate(["/"]);
     }
-    else{
+    else {
       alert('veuillez remplir tout les champs')
     }
   }
-  delete(id: number){
+  delete(id: number) {
     this.bddService.deleteArticle(id);
   }
-  addTag(){
+  addTag() {
     const tagid = this.createForm.get('tag')?.value;
-    this.addTags.push(tagid);
-    for(let tag of this.tags){
-      if(tagid == tag.id_tag){
-        this.currentTags.push(tag.nom_tag);
+    if (this.addTags.includes(tagid)) {
+      alert('Ce tag est deja présent')
+    }
+    else {
+      this.addTags.push(tagid);
+      for (let tag of this.tags) {
+        if (tagid == tag.id_tag) {
+          this.currentTags.push(tag.nom_tag);
+        }
       }
     }
-    console.log(this.addTags)
   }
-  deleteTag(id: number){
+  deleteTag(id: number) {
     const tag = this.createForm.get('tag')?.value;
-    this.currentTags.splice(id, 1);  
+    this.currentTags.splice(id, 1);
     this.addTags.splice(id, 1);
     console.log(this.addTags)
   }

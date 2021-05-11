@@ -26,7 +26,6 @@ export class DetailComponent implements OnInit {
   singleArticle(id: number) {
     this.bddService.getSingleArticle(id).subscribe((data: IArticle) => {
       this.article = data;
-      console.log(this.article);
     });
     this.bddService.getTagsArticle(id).subscribe((datas:ITag[]) => {
       for(let info of datas){

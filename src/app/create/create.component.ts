@@ -41,21 +41,24 @@ export class CreateComponent implements OnInit {
       tag: new FormControl()
     })
   }
-  addTag(){
+  addTag() {
     const tagid = this.createForm.get('tag')?.value;
-    this.addTags.push(tagid);
-    for(let tag of this.tags){
-      if(tagid == tag.id_tag){
-        this.currentTags.push(tag.nom_tag);
+    if (this.addTags.includes(tagid)) {
+      alert('Ce tag est deja présent')
+    }
+    else {
+      this.addTags.push(tagid);
+      for (let tag of this.tags) {
+        if (tagid == tag.id_tag) {
+          this.currentTags.push(tag.nom_tag);
+        }
       }
     }
-    console.log(this.addTags)
   }
   deleteTag(id: number){
     const tag = this.createForm.get('tag')?.value;
     this.currentTags.splice(id, 1);  
     this.addTags.splice(id, 1);
-    console.log(this.addTags)
   }
   create(){
     const titre = this.createForm.get('titre')?.value;
