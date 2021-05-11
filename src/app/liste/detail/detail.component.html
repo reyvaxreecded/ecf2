@@ -1,6 +1,20 @@
 <div class="details" *ngIf="article != null">
-    <h1 class="head">{{article.titre_article}}</h1>
-    <p>Catégorie: <a>{{article.nom_categorie}}</a></p>
-    <p *ngIf="tags != null">Tags: <a *ngFor="let tag of tags"> {{tag.nom_tag}} | </a></p>
-    <span>Description: {{article.contenu_article}}</span>
+  <h1 class="head">{{article.titre_article}}</h1>
+  <div class="text--underbar"></div>
+  <div class="infos">
+    <p>Catégorie:
+      <a id="categorie">{{article.nom_categorie}}</a>
+    </p>
+    <p *ngIf="tags != null">Tags:
+      <a *ngFor="let tag of tags" id="tag">
+        {{tag.nom_tag}}
+        |
+      </a>
+    </p>
+  </div>
+  <div class="description">
+    <span>
+      {{article.contenu_article}}</span>
+  </div>
+
 </div>
